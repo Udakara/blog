@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@tanem/react-nprogress": "^3.0.82",
     "graphql": "^15.7.2",
     "graphql-request": "^3.6.1",
     "html-react-parser": "^1.4.0",
@@ -14,7 +15,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-multi-carousel": "^2.6.5",
-    "sass": "^1.43.5"
+    "sass": "^1.43.5",
+    "zustand": "^3.6.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
