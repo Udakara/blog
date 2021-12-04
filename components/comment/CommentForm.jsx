@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { submitComment } from "../services";
+import { submitComment } from "../../services";
 
 const CommentForm = ({slug}) => {
   const [error, seterror] = useState(false);
