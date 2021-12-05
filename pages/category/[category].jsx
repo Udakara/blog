@@ -18,7 +18,9 @@ const Category = ({ posts }) => {
               </div>
             ))
           ) : (
-            <h1 className="inline align-middle text-gray-700 ml-2  text-lg">Not Available</h1>
+            <h1 className="inline align-middle text-gray-700 ml-2  text-lg">
+              Not Available
+            </h1>
           )}
         </div>
         <div className="lg:col-span-4 col-span-1">
@@ -36,8 +38,6 @@ const Category = ({ posts }) => {
 export default Category;
 
 export async function getStaticProps({ params }) {
-  console.log(params.category);
-
   const data = await getCategoriesedPosts(params.category);
   return {
     props: { posts: data },

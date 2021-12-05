@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { submitComment } from "../../services";
 
-const CommentForm = ({slug}) => {
+const CommentForm = ({ slug }) => {
   const [error, seterror] = useState(false);
   const [localStorage, setlocalStorage] = useState(null);
   const [showSuccessMessage, setshowSuccessMessage] = useState(false);
@@ -25,7 +25,6 @@ const CommentForm = ({slug}) => {
     const commentObj = { name, email, comment, slug };
 
     submitComment(commentObj).then((res) => {
-      console.log("response", res);
       setshowSuccessMessage(true);
 
       setTimeout(() => {
