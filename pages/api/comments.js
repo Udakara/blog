@@ -25,7 +25,7 @@ const token = `Bearer ${process.env.NEXT_GRAPHCMS_TOKEN}`
 // }
 
 export default async function asynchandler(req, res) {
-    console.log("Token", token);
+    
     const graphQLClient = new GraphQLClient((graphqlApi), {
       headers: {
         authorization: `Bearer ${process.env.NEXT_GRAPHCMS_TOKEN}`,

@@ -8,15 +8,12 @@ import {
   Author,
   Comments,
   CommentForm,
-  Loader,
 } from "../../components";
 
 const PostDetails = ({ post }) => {
   const router = useRouter();
 
-  if (router.isFallback) {
-    return <Loader />;
-  }
+
 
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -45,7 +42,6 @@ export default PostDetails;
 
 export async function getStaticProps({ params }) {
   const data = await getPostDetails(params.slug);
-  console.log("post" , data)
   return {
     props: { post: data },
   };
@@ -57,6 +53,6 @@ export async function getStaticPaths() {
   const posts = await getPosts();
   return {
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: true,
+    fallback: false,
   };
 }
