@@ -1,8 +1,10 @@
 import Head from 'next/head'
+import React, { useState, useEffect } from "react";
 import { PostCard, Categories, PostWidget , PoweredBy} from '../components'
 import { getPosts } from '../services'
 
 export default function Home({posts}) {
+  
   return (
     
     <div className="container mx-auto px-10 mb-8">
@@ -27,7 +29,7 @@ export default function Home({posts}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const posts = (await getPosts()) || []
   return {
     props: { posts }
