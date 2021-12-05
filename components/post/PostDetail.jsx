@@ -63,8 +63,8 @@ const PostDetail = ({ post }) => {
     <div className="bg-white shadow-lg rounded lg:p-8 pb12 mb-8">
       <div className="relative overflow-hidden shadow-md mb-6">
         <img
-          src={post.featuredImage.url}
-          alt={post.title}
+          src={post && post.featuredImage.url}
+          alt={post && post.title}
           className="object-top h-full w-full"
         />
       </div>
@@ -72,14 +72,14 @@ const PostDetail = ({ post }) => {
         <div className="flex items-center mb-8 w-full">
           <div className="hidden md:flex justify-center lg:mb-0 lg:w-auto mr-8 items-center">
             <img
-              alt={post.author.name}
+              alt={post && post.author.name}
               height="30px"
               width="30px"
               className="align-middle rounded-full"
-              src={post.author.photo.url}
+              src={post && post.author.photo.url}
             />
             <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-              {post.author.name}
+              {post && post.author.name}
             </p>
           </div>
           <div className="font-medium text-gray-700">
@@ -98,15 +98,15 @@ const PostDetail = ({ post }) => {
               />
             </svg>
             <span className="align-middle">
-              {moment(post.createdAt).format("MMM DD, YYYY")}
+              {moment(post && post.createdAt).format("MMM DD, YYYY")}
             </span>
           </div>
         </div>
       </div>
       <div>
-        <h1 className="mb-8 text-3xl font font-semibold">{post.title}</h1>
+        <h1 className="mb-8 text-3xl font font-semibold">{post && post.title}</h1>
       </div>
-      {post.content.raw.children.map((typeObject, index) => {
+      {post && post.content.raw.children.map((typeObject, index) => {
         const children = typeObject.children.map((item, itemIndex) =>
           getContentFragment(itemIndex, item.text, item)
         );

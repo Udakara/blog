@@ -7,11 +7,15 @@ const Category = ({ posts }) => {
   const router = useRouter();
   const { category } = router.query;
 
+  if(router.isFallback){
+    <h1>Data is loading</h1>
+  }
+
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {posts.length != 0 ? (
+          { posts && posts.length != 0 ? (
             posts.map((post, index) => (
               <div>
                 <PostCard post={post} key={index} />
@@ -41,7 +45,7 @@ export async function getStaticProps({ params }) {
   const data = await getCategoriesedPosts(params.category);
   return {
     props: { posts: data },
-    revalidate: true,
+    revalidate: false,
   };
 }
 
@@ -51,6 +55,6 @@ export async function getStaticPaths() {
     paths: categoryList.map((category) => ({
       params: { category: category.slug },
     })),
-    fallback: false,
+    fallback: true,
   };
 }

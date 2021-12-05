@@ -13,6 +13,10 @@ import {
 const PostDetails = ({ post }) => {
   const router = useRouter();
 
+  if(router.isFallback){
+    <h1>Data is loading</h1>
+  }
+
 
 
   return (
@@ -20,15 +24,15 @@ const PostDetails = ({ post }) => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="col-span-1 lg:col-span-8">
           <PostDetail post={post} />
-          <Author author={post.author} />
-          <CommentForm slug={post.slug} />
-          <Comments slug={post.slug} />
+          <Author author={post && post.author} />
+          <CommentForm slug={post && post.slug} />
+          <Comments slug={post && post.slug} />
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky top-20">
             <PostWidget
-              slug={post.slug}
-              categories={post.categories.map((category) => category.slug)}
+              slug={post && post.slug}
+              categories={post && post.categories.map((category) => category.slug)}
             />
             <Categories />
           </div>
@@ -43,7 +47,7 @@ export default PostDetails;
 export async function getStaticProps({ params }) {
   const data = await getPostDetails(params.slug);
   return {
-    props: { post: data },
+    props: { post: data ? data : {} },
   };
 }
 
@@ -53,6 +57,6 @@ export async function getStaticPaths() {
   const posts = await getPosts();
   return {
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: false,
+    fallback: true,
   };
 }
