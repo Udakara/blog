@@ -13,11 +13,9 @@ import {
 const PostDetails = ({ post }) => {
   const router = useRouter();
 
-  if(router.isFallback){
-    <h1>Data is loading</h1>
+  if (router.isFallback) {
+    <h1>Data is loading</h1>;
   }
-
-
 
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -32,7 +30,9 @@ const PostDetails = ({ post }) => {
           <div className="relative lg:sticky top-20">
             <PostWidget
               slug={post && post.slug}
-              categories={post && post.categories.map((category) => category.slug)}
+              categories={
+                post && post.categories.map((category) => category.slug)
+              }
             />
             <Categories />
           </div>
@@ -44,11 +44,11 @@ const PostDetails = ({ post }) => {
 
 export default PostDetails;
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const data = await getPostDetails(params.slug);
   return {
     props: { post: data },
-    revalidate: false
+    revalidate: false,
   };
 }
 
